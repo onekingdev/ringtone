@@ -1,0 +1,362 @@
+@media (min-width: 992px){
+    .typo-line{
+        padding-left: 140px;
+        margin-bottom: 40px;
+        position: relative;
+    }
+
+    .typo-line .category{
+        transform: translateY(-50%);
+        top: 50%;
+        left: 0px;
+        position: absolute;
+    }
+}
+.player-control{
+  cursor: pointer;
+}
+.label-lang{
+    height: 70px;
+    display: inline-block;
+    line-height: 70px;
+    font-size: 20pt;
+    font-weight: bold;
+    padding-left: 10px;
+    }
+#map{
+    position:relative;
+    width:100%;
+    height: calc(100% - 60px);
+    margin-top: 70px;
+}
+
+.places-buttons .btn{
+    margin-bottom: 30px
+}
+
+.space-70{
+    height: 70px;
+    display: block;
+}
+
+.sidebar .nav > li.active-pro{
+    position: absolute;
+    width: 100%;
+    bottom: 10px;
+}
+
+.tim-row{
+    margin-bottom: 20px;
+}
+
+.tim-typo{
+    padding-left: 25%;
+    margin-bottom: 40px;
+    position: relative;
+}
+.tim-typo .tim-note{
+    bottom: 10px;
+    color: #c0c1c2;
+    display: block;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 13px;
+    left: 0;
+    margin-left: 20px;
+    position: absolute;
+    width: 260px;
+}
+.tim-row{
+    padding-top: 50px;
+}
+.tim-row h3{
+    margin-top: 0;
+}
+.fileinput-new{
+    max-width: 100% !important;
+}
+.img-selector{
+    opacity: 0px !important;
+    display: none;
+}
+.avatar{
+    position: relative;
+}
+.avatar .badge-avatar{
+        height: 25px;
+    width: 25px;
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+}
+.pagination span.page a,
+.pagination span.next a,
+.pagination span.last a,
+.pagination span.first a,
+.pagination span.previous a{
+    border-radius: 50px;
+    color: white; 
+    margin: 5px;
+    cursor: pointer;
+}
+.pagination span.page a,
+.pagination span.next a,
+.pagination span.last a,
+.pagination span.first a,
+.pagination span.previous a{
+    color: white;
+}
+
+.pagination span.current{
+  border: 0;
+  border-radius: 30px !important;
+  transition: all .3s;
+  padding: 0px 11px;
+  margin: 0 3px;
+  min-width: 30px;
+  height: 30px;
+  padding-left:  20px;
+  padding-right: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  line-height: 30px;
+  color: #999999;
+  font-weight: 400;
+  font-size: 12px;
+  text-transform: uppercase;
+  background: transparent;
+  border:1px solid #ccc;
+  }
+.pagination{
+    display: block;
+}
+.wallpaper-title{
+    border-radius: 0px 0px 6px 6px;
+    padding: 10px;
+    color: black;
+    font-weight: 900;
+    text-align: center;
+    height: 55px;
+}
+.wallpaper-logo{
+    border-radius: 0px 0px 6px 6px;
+    padding: 0px;
+    color: black;
+    font-weight: 900;
+    text-align: center;
+}
+.avatar-img{
+  float: left;
+      height: 25px !important;
+    width: 25px !important;
+    border-radius: 67px !important;
+}
+.color{
+
+  border: 1px solid #ccc 
+  display: inline-table;
+  height: 11px;
+  width: 30px;
+}
+.timeline > li > .timeline-badge{
+      line-height: 48px;
+}
+.timeline > li > .timeline-badge img{
+    height: 100%;
+    width: 100%;
+}
+.timeline.timeline-simple {
+    margin-top: 00px;
+    padding: 0 0 00px;
+}
+.timeline > li {
+    margin-bottom: 0px;
+    position: relative;
+}
+.timeline.timeline-simple:before {
+    left: 5%;
+    background-color: none;
+    width:0px;
+}
+.check-label{
+      height: 25px;
+    display: inline-table;
+    line-height: 25px;
+    margin-left: 10px;
+}
+.color{
+  height: 20px;
+    background-color: #C40E38;
+    width: 20px;
+    display: inline-block;
+    border-radius: 61px;
+    float: left;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+.img-profile{
+    border-radius: 50px;
+}
+
+ul.tags{
+  list-style: none;
+  padding: 0px;
+  margin: 0px;
+}
+ul.tags label{
+  display: none !important;
+}
+ul.tags >li{
+  margin-top: 5px;
+}
+ul.tags >li>a.delete-item{
+    height: 40px;
+    background: #e4306f;
+    display: inline-block;
+    line-height: 40px;
+    width: 40px;
+    text-align: center;
+    color: white;
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+  }
+ul.tags >li>div,ul.tags >li>div>div{
+  display: inline-block;
+  width: calc(50% - 20px);
+  float: left;
+}
+ul.tags >li>div[id^="question_tags"]{
+  display: inline-block;
+  width: calc(100% - 40px) !important;
+  float: left;
+}
+ul.tags >li>div[id^="question_tags"]>div{
+  display: inline-block;
+  width: calc(50%)  !important;
+  float: left;
+}
+ul.tags >li>div>input,ul.tags >li>div>div>input{
+    width: 100%;
+    height: 40px;
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+    border: 1px solid #ccc;
+    padding: 5px;
+}
+ul.tags >li>div>input[type="number"],ul.tags >li>div>div>input[type="number"]{
+    border-radius: 0px !important;
+    border-left: none;
+}
+ul.tags >li:last-child a.delete-item{
+  display: none;
+}
+ul.tags a.add_tag_link{
+    height: 40px;
+    background: #e4306f;
+    display: inline-block;
+    line-height: 40px;
+    width: 100%;
+    text-align: center;
+    color: white;
+    border-radius: 5px;
+}
+.posts{
+  padding: 5px;
+}
+#audioplayer{
+  display: none;
+}
+.card-product{
+    margin-top: 0px;
+}
+.card-color-1{
+  background: #40A8B4;
+}
+.card-color-2{
+  background: #406EB4;
+}
+.card-color-3{
+  background: #4C40B4;
+}
+.card-color-4{
+  background: #8640B4;
+}
+.card-color-5{
+  background: #B440A8;
+}
+.card-color-6{
+  background: #B4406E;
+}
+
+/* The container */
+.chk-container {
+  position: absolute;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  right:55px;
+  top: 35px;
+}
+
+/* Hide the browser's default checkbox */
+.chk-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 35px;
+  width: 35px;
+  background-color: #000000;
+  margin-top: -20px;
+  border-radius: initial;
+  border-top-left-radius: 17.5px;
+  border-top-right-radius: 17.5px;
+  border-bottom-left-radius: 17.5px;
+  border-bottom-right-radius: 17.5px;
+}
+
+/* On mouse-over, add a grey background color */
+.chk-container:hover input ~ .checkmark {
+  background-color: #000000;
+}
+
+/* When the checkbox is checked, add a blue background */
+.chk-container input:checked ~ .checkmark {
+  background-color: #000000;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.chk-container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.chk-container .checkmark:after {
+  left: 13px;
+  top: 8px;
+  width: 8px;
+  height: 14px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}

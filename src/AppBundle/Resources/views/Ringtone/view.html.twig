@@ -1,0 +1,175 @@
+{% extends "AppBundle::layout.html.twig" %}
+{% block body%}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4">
+                {% if app.request.get("review")!=true %}
+                    <a href="{{path("app_ringtone_index")}}" style="width:100%" class="btn  btn-lg btn-warning"><i class="material-icons" style="font-size: 30px;">arrow_back</i> Back</a>
+                {% else %}
+                    <a href="{{path("app_ringtone_reviews")}}" style="width:100%" class="btn  btn-lg btn-warning"><i class="material-icons" style="font-size: 30px;">arrow_back</i> Back</a>
+                {% endif %}
+            </div>
+            <div class="col-md-4">
+            </div>
+            <div class="col-md-4">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-content">
+                        <h3 class="card-title">{{ringtone.title}}</h3>
+                        <audio controls style="width:100%">
+                          <source src="{{app.request.getSchemeAndHttpHost()}}/{{ringtone.media.link}}" type="audio/ogg">
+                          <source src="{{app.request.getSchemeAndHttpHost()}}/{{ringtone.media.link}}" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                        </audio>                        <h4>Description : </h4>
+                        <p>{{ringtone.description}}</p>
+                        <h4>Tags :</h4>
+                        <p> {{ringtone.tags}}</p>
+                        <div class="row">
+                            <div class="col-md-6">{% if ringtone.enabled %}
+                                <i class="material-icons" style="color:green;float:left">check_circle</i> <span class="check-label">Enabled</span>
+                            {% else %}
+                                <i class="material-icons" style="color:red;float:left">cancel</i> <span class="check-label">Enabled</span>
+                            {% endif %}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h4>Categories : </h4>
+                            </div>
+                            <div class="col-md-12" >
+                                {% for color in ringtone.categories %}
+                                    <span class="label label-rose " style="margin:5px;"> <b> {{color.title}} </b></span>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                <div class="card-footer">
+                    <div class="price">
+                         <div class="wallpaper-logo" >
+                                    {% if ringtone.user.image == "" %}
+                                        <img src="{{asset("img/avatar.jpg")}}" class="avatar-img" alt="">
+                                    {% else %}
+                                        <img src="{{ringtone.user.image}}" class="avatar-img" alt="">
+                                    {% endif %}
+                         <div style="height: 26px;line-height: 26px;padding-left:10px">
+                            {{ringtone.user.name}}
+                         </div>
+                     </div>
+                    </div>
+
+                    <div class="stats pull-right">
+                       <div class="ringtone-logo" >{{ringtone.created|ago}}</div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card" >
+                    <div class="status-bar"></div>
+                    <div class="action-bar">
+                        <a href="#" class="zmdi zmdi-star"></a>
+                    </div>
+                    {% set rate  =  rating %}
+                    {% set rate_main  =  rating %}
+                    <div class="list-group lg-alt lg-even-black">
+                        <br>
+                        <center>
+                        <span style="height: 28px;display: inline-block;font-size: 30pt;font-weight: bold;padding-left: 20px;">Rating : {{rate_main|number_format(1, '.', ',')}}</span>
+                        </center>
+                        <table width="100%" >
+                            <tr>
+                                <td colspan="3" style="padding: 15px;">
+                                    <div style="/* float: left; */display: inline-flex;">
+                                        {% for i in 1..5 %}
+                                            {% if rate >= 1 %}
+                                                <img src="{{asset("img/star.png")}}" style="height:50px;width:50px">
+                                            {% endif %}
+                                            {% if rate >= 0.25 and  rate < 0.75 %}
+                                                <img src="{{asset("img/star_h.png")}}" style="height:50px;width:50px">
+                                            {% endif %}
+                                            {% if rate >= 0.75 and  rate < 1 %}
+                                                <img src="{{asset("img/star.png")}}" style="height:50px;width:50px">
+                                            {% endif %}
+                                            {% if rate < 0.25 %}
+                                                <img src="{{asset("img/star_e.png")}}" style="height:50px;width:50px">
+                                            {% endif %}
+                                            {% set rate  =  rate - 1 %}
+                                        {% endfor %}
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="50%" align="right" style="padding: 5px;">
+                                    <img src="{{asset("img/star.png")}}" style="height:30px;width:30px">
+                                    <img src="{{asset("img/star.png")}}" style="height:30px;width:30px">
+                                    <img src="{{asset("img/star.png")}}" style="height:30px;width:30px">
+                                    <img src="{{asset("img/star.png")}}" style="height:30px;width:30px">
+                                    <img src="{{asset("img/star.png")}}" style="height:30px;width:30px">
+                                </td>
+                                <td width="30px" align="center">{{ratings.rate_5}}</td>
+                                <td  align="left" style="padding:10px">
+                                    <span style="display:block;height:15px;background-color:#ea1f62;width:{{values.rate_5}}%"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="50%" align="right" style="padding: 5px;">
+                                    <img src="{{asset("img/star_e.png")}}" style="height:30px;width:30px">
+                                    <img src="{{asset("img/star.png")}}" style="height:30px;width:30px">
+                                    <img src="{{asset("img/star.png")}}" style="height:30px;width:30px">
+                                    <img src="{{asset("img/star.png")}}" style="height:30px;width:30px">
+                                    <img src="{{asset("img/star.png")}}" style="height:30px;width:30px">
+                                </td>
+                                <td width="30px" align="center">{{ratings.rate_4}}</td>
+                                <td  align="left" style="padding:10px">
+                                    <span style="display:block;height:15px;background-color:#ea1f62;width:{{values.rate_4}}%"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="50%" align="right" style="padding: 5px;">
+                                    <img src="{{asset("img/star_e.png")}}" style="height:30px;width:30px">
+                                    <img src="{{asset("img/star_e.png")}}" style="height:30px;width:30px">
+                                    <img src="{{asset("img/star.png")}}" style="height:30px;width:30px">
+                                    <img src="{{asset("img/star.png")}}" style="height:30px;width:30px">
+                                    <img src="{{asset("img/star.png")}}" style="height:30px;width:30px">
+                                </td>
+                                <td width="30px" align="center">{{ratings.rate_3}}</td>
+                                <td  align="left" style="padding:10px">
+                                    <span style="display:block;height:15px;background-color:#ea1f62;width:{{values.rate_3}}%"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="50%" align="right" style="padding: 5px;">
+                                    
+                                    <img src="{{asset("img/star_e.png")}}" style="height:30px;width:30px">
+                                    <img src="{{asset("img/star_e.png")}}" style="height:30px;width:30px">
+                                    <img src="{{asset("img/star_e.png")}}" style="height:30px;width:30px">
+                                    <img src="{{asset("img/star.png")}}" style="height:30px;width:30px">
+                                    <img src="{{asset("img/star.png")}}" style="height:30px;width:30px">
+                                </td>
+                                <td width="30px" align="center">{{ratings.rate_2}}</td>
+                                <td  align="left" style="padding:10px">
+                                    <span style="display:block;height:15px;background-color:#ea1f62;width:{{values.rate_2}}%"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="50%" align="right" style="padding: 5px;">
+                                    <img src="{{asset("img/star_e.png")}}" style="height:30px;width:30px">
+                                    <img src="{{asset("img/star_e.png")}}" style="height:30px;width:30px">
+                                    <img src="{{asset("img/star_e.png")}}" style="height:30px;width:30px">
+                                    <img src="{{asset("img/star_e.png")}}" style="height:30px;width:30px">
+                                    <img src="{{asset("img/star.png")}}" style="height:30px;width:30px">
+                                </td>
+                                <td width="30px" align="center">{{ratings.rate_1}}</td>
+                                <td  align="left" style="padding:10px">
+                                    <span style="display:block;height:15px;background-color:#ea1f62;width:{{values.rate_1}}%"></span>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock%}

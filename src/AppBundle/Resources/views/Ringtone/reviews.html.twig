@@ -1,0 +1,71 @@
+{% extends "AppBundle::layout.html.twig" %}
+{% block body%}
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-4">
+				<a href="{{path("app_ringtone_reviews")}}" class="btn  btn-lg btn-warning" style="    width: 100%;"><i class="material-icons" style="font-size: 30px;">refresh</i> Refresh</a>
+			</div>
+			<div class="col-md-4">
+				<a class="btn btn btn-lg btn-info" style="    width: 100%;"><i class="material-icons" style="font-size: 30px;">view_list</i> ringtones :  {{ringtones_count}} </a>
+			</div>
+			<div class="col-md-4">
+				<a id="delete-btn" class="btn btn-delete btn-lg pull-right add-button col-md-12" title=""><i class="material-icons" style="font-size: 30px;">delete</i> DELETE </a>
+			</div>
+		</div>
+		<div class="row">
+						{% set i = 1 %}
+			{% for ringtone in ringtones %}
+				<div class="col-md-6" >
+					<div class="card card-color-{{i}}" style="margin-bottom:  5px;margin-top: 5px;">
+						<div style="height: 80px;width: 80px;border-radius: 100px;margin:  10px;float: left;">
+							<i class="material-icons player-control" onclick="play(this)" rel="{{ app.request.getSchemeAndHttpHost()}}/{{ringtone.media.link}}" style="color:white;font-size: 78px;" >play_circle_outline</i>
+						</div>
+						<div style="height: 80px;margin-left: 80px;border-radius: 100px;margin:  10px;color:white">
+							<b style="display: block;font-size: 18px;padding-top: 11px;">{{ringtone.title}} </b>
+							<p>
+								{% if ringtone.duration > 60 %}
+									{{(ringtone.duration)//(60)}}:{{(ringtone.duration)-((ringtone.duration)//(60)*60)}}
+								{% elseif ringtone.duration == 0 %}
+									--:--
+								{% else %}
+									{{ringtone.duration}}s
+								{% endif %}
+							</p>
+							<input type="hidden" id="ringtoneID" value={{ringtone.id}}>
+							<label class="chk-container">
+								<input type="checkbox" class="checkbox-input">
+    								<span class="checkmark"></span>
+							</label>
+						</div>
+						<div class="card-footer" style="text-align:center">
+							<a href="{{path("app_ringtone_review",{id:ringtone.id})}}" rel="tooltip" data-placement="bottom" class=" btn btn-success btn-xs btn-round" data-original-title="Review">
+								<i class="material-icons">check_circle</i>
+							</a>
+							<a href="{{path("app_ringtone_view",{id:ringtone.id})}}" rel="tooltip" data-placement="bottom" class=" btn btn-info btn-xs btn-round" data-original-title="View">
+								<i class="material-icons">remove_red_eye</i>
+							</a>
+							<a href="{{path("app_ringtone_delete",{id:ringtone.id})}}" rel="tooltip" data-placement="bottom" class=" btn btn-danger btn-xs btn-round" data-original-title="Delete">
+								<i class="material-icons">delete</i>
+							</a>
+						</div>
+					</div>
+				</div>
+				{% set i = i+1 %}
+				{% if i >6 %}
+					{% set i = 1 %}
+				{% endif %}
+			{% else %}
+				<div class="card"  style="text-align: center;" >
+					<br>
+					<br>
+					<img src="{{asset("img/bg_empty.png")}}"  style="width: auto !important;" ="">
+					<br>
+					<br>
+				</div>
+			{% endfor %}
+		</div>
+		<div class=" pull-right">
+			{{ knp_pagination_render(ringtones) }}
+		</div>
+	</div>
+{% endblock%}

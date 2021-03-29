@@ -1,0 +1,74 @@
+
+{% extends "AppBundle::layout.html.twig" %}
+{% block body%}
+<div class="container-fluid">
+    <div class="row">
+       <div class="col-sm-offset-1 col-md-10">
+            <div class="card">
+                <div class="card-header card-header-icon" data-background-color="rose">
+                    <i class="material-icons">wallpaper</i>
+                </div>
+                <div class="card-content">
+                    <h4 class="card-title">New wallpaper</h4>
+                    {{form_start(form)}}
+                        <div class="form-group label-floating ">
+                            <label class="control-label">Wallpaper title</label>
+                            {{form_widget(form.title,{"attr":{"class":"form-control"}})}}
+                            <span class="validate-input">{{form_errors(form.title)}}</span>
+                        </div>
+                        <div class="form-group label-floating ">
+                            <label class="control-label">Wallpaper Tags (Ex:anim,art,hero)</label>
+                            <br>
+                            {{form_widget(form.tags,{"attr":{"class":"input-tags"}})}}
+                            <span class="validate-input">{{form_errors(form.tags)}}</span>
+                        </div>
+                        <script>
+                        $('.input-tags').selectize({
+                          persist: false,
+                          createOnBlur: true,
+                          create: true
+                        });
+                        </script>
+                        <div class="form-group label-floating ">
+                            <label class="control-label">Wallpaper Description</label>
+                            {{form_widget(form.description,{"attr":{"class":"form-control","rows":7}})}}
+                            <span class="validate-input">{{form_errors(form.description)}}</span>
+                        </div>
+                        <div class="">
+                              <label>
+                                {{form_widget(form.enabled)}}  Enabled
+                              </label>
+                        </div>
+                        <br>
+                        {{form_label(form.categories,null,{label_attr:{"style":"font-size:16px"}})}} :
+                        <div>
+                            <div class="row">
+                           {% for field in form.categories %}
+                                <label  style="background: #e02d6c;border-radius: 20px;padding: 5px;text-align: center;margin: 10px;color: white;font-weight: bold;padding-left: 20px;padding-right: 20px; ">
+                                    <div  style="padding:3px;">
+                                    {{ form_widget(field) }} {{ field.vars.label }}
+                                    </div>
+                                </label>
+                            {% endfor %}
+                            </div>
+                        </div>
+                        
+                         <div class="fileinput fileinput-new text-center" data-provides="fileinput" style="width: 100%;">
+                              <div class="fileinput-preview thumbnail"></div>
+                              <div>
+                                  <a href="#" class="btn btn-rose btn-round btn-select" style="width: 100%;"><i class="material-icons">wallpaper</i> Select wallpaper</a>
+                              </div>
+                              {{form_widget(form.files,{"attr":{"id":"gallery-photo-add", "multiple":"true","class":"file-hidden input-file","style":"   /* display: none; */height: 0px;width: 0px;position: absolute;"}})}}
+                          </div>
+                          <div class="col-md-12" class="gallery">
+                          </div>
+                          <span class="validate-input">{{form_errors(form.files)}}</span>
+                          <br>
+                          <span class="pull-right"><a href="{{path("app_wallpaper_index")}}" class="btn btn-fill btn-yellow"><i class="material-icons">arrow_back</i> Cancel</a>{{form_widget(form.save,{attr:{"class":"btn btn-fill btn-rose"}})}}</span>
+                    {{form_end(form)}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock%}

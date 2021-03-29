@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta property="og:title" content="{{wallpaper.title}}">
+<meta property="og:description" content="{{wallpaper.description}}">
+<meta property="og:image" 		content="{{asset("img/cover.jpg")|imagine_filter('wallpaper_image')}}">
+<meta property="og:url" 		content="{{ app.request.uri }}">
+	<title>{{wallpaper.title}}</title>
+</head>
+<body>
+<center>
+	<a href="{{url_google_play}}">	<img src="{{asset("img/download.png")}}" width="300px"></a>
+</center>	
+</body>
+</html>

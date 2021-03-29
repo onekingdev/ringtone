@@ -1,0 +1,56 @@
+{% extends "AppBundle::layout.html.twig" %}
+{% block body%}
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-4">
+				<a href="{{path("app_wallpaper_reviews")}}" class="btn  btn-lg btn-warning" style="    width: 100%;"><i class="material-icons" style="font-size: 30px;">refresh</i> Refresh</a>
+			</div>
+			<div class="col-md-4">
+				<a class="btn btn btn-lg btn-yellow" style="    width: 100%;"><i class="material-icons" style="font-size: 30px;">view_list</i> wallpapers :  {{wallpapers_count}} </a>
+			</div>
+		</div>
+		<div class="row">
+						{% set i = 1 %}
+			{% for wallpaper in wallpapers %}
+				<div class="col-md-4" >
+					<div class="card card-color-{{i}}" style="margin-bottom:  5px;margin-top: 5px;">
+						<div>
+							<a target="_blank" href="../{{wallpaper.media.link}}"  style="display: block; margin: auto; width: 300px; margin-top: 10px; margin-bottom: 10px;">
+							  	<img class="imageThumb" style="width: 300px; height: 225px;" src="../{{wallpaper.media.link}}" alt="Image">
+							</a>
+						</div>
+						<div style="text-align: center;">
+							<b style="font-size: 18px;padding-top: 11px;">{{wallpaper.title}} </b>
+						</div>
+						<div class="card-footer" style="text-align:center">
+							<a href="{{path("app_wallpaper_review",{id:wallpaper.id})}}" rel="tooltip" data-placement="bottom" class=" btn btn-success btn-xs btn-round" data-original-title="Review">
+								<i class="material-icons">check_circle</i>
+							</a>
+							<a href="{{path("app_wallpaper_view",{id:wallpaper.id})}}" rel="tooltip" data-placement="bottom" class=" btn btn-info btn-xs btn-round" data-original-title="View">
+								<i class="material-icons">remove_red_eye</i>
+							</a>
+							<a href="{{path("app_wallpaper_delete",{id:wallpaper.id})}}" rel="tooltip" data-placement="bottom" class=" btn btn-danger btn-xs btn-round" data-original-title="Delete">
+								<i class="material-icons">delete</i>
+							</a>
+						</div>
+					</div>
+				</div>
+				{% set i = i+1 %}
+				{% if i >6 %}
+					{% set i = 1 %}
+				{% endif %}
+			{% else %}
+				<div class="card"  style="text-align: center;" >
+					<br>
+					<br>
+					<img src="{{asset("img/bg_empty.png")}}"  style="width: auto !important;" ="">
+					<br>
+					<br>
+				</div>
+			{% endfor %}
+		</div>
+		<div class=" pull-right">
+			{{ knp_pagination_render(wallpapers) }}
+		</div>
+	</div>
+{% endblock%}

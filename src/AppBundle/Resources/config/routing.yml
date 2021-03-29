@@ -1,0 +1,435 @@
+app_home_index:
+    path:     /
+    defaults: { _controller: AppBundle:Home:index }
+app_home_tags_index:
+    path:     /tags/index.html
+    defaults: { _controller: AppBundle:Home:tags }
+app_home_tags_delete:
+    path: /tags/delete/{id}.html
+    defaults: { _controller: AppBundle:Home:deletetag}
+    requirements:
+        id:  \d+
+app_home_notif_ringtone:
+    path:     /notif/ringtone.html
+    defaults: { _controller: AppBundle:Home:notifRingtone }
+app_home_notif_wallpaper:
+    path:     /notif/wallpaper.html
+    defaults: { _controller: AppBundle:Home:notifWallpaper }
+app_home_notif_url:
+    path:     /notif/url.html
+    defaults: { _controller: AppBundle:Home:notifUrl }
+app_home_notif_user:
+    path:     /notif/user.html
+    defaults: { _controller: AppBundle:Home:notifUser }
+
+app_home_notif_user_wallpaper:
+    path:     /notif/user/wallpaper.html
+    defaults: { _controller: AppBundle:Home:notifUserWallpaper }
+
+app_home_notif_category:
+    path:     /notif/category.html
+    defaults: { _controller: AppBundle:Home:notifCategory }
+api_home_api_device:
+    path:   /api/device/{tkn}/{token}/{purchase}/
+    defaults: { _controller: AppBundle:Home:api_device }
+app_support_index:
+    path:     /support/index.html
+    defaults: { _controller: AppBundle:Support:index }
+app_support_view:
+    path:     /support/view/{id}.html
+    defaults: { _controller: AppBundle:Support:view }
+app_support_delete:
+    path:     /support/delete/{id}.html
+    defaults: { _controller: AppBundle:Support:delete }
+api_support_add:
+    path:     /api/support/add/{token}/{purchase}/
+    defaults: { _controller: AppBundle:Support:api_add }
+    methods: POST
+#report
+app_report_index:
+    path:     /report/index.html
+    defaults: { _controller: AppBundle:Report:index }
+app_report_delete:
+    path:     /report/delete/{id}.html
+    defaults: { _controller: AppBundle:Report:delete }
+api_report_add:
+    path:     /api/report/add/{token}/{purchase}/
+    defaults: { _controller: AppBundle:Report:api_add }
+    methods: POST
+api_report_add_wallpaper:
+    path: /api/report/add/wallpaper/{token}/{purchase}/
+    defaults: { _controller: AppBundle:Report:api_add_wallpaper }
+    methods: POST
+#slide
+app_slide_add:
+    path: /slide/add.html
+    defaults: { _controller: AppBundle:Slide:add}
+app_slide_index:
+    path: /slide/index.html
+    defaults: { _controller: AppBundle:Slide:index}
+app_slide_edit:
+    path: /slide/{id}.html
+    defaults: { _controller: AppBundle:Slide:edit}
+    requirements:
+        id:  \d+
+app_slide_delete:
+    path: /slide/delete/{id}.html
+    defaults: { _controller: AppBundle:Slide:delete}
+    requirements:
+        id:  \d+
+app_slide_up:
+    path: /slide/up/{id}.html
+    defaults: { _controller: AppBundle:Slide:up}
+    requirements:
+        id:  \d+
+app_slide_down:
+    path: /slide/down/{id}.html
+    defaults: { _controller: AppBundle:Slide:down}
+    requirements:
+        id:  \d+
+api_slide_all:
+    path:     /api/slide/all/{token}/{purchase}/
+    defaults: { _controller: AppBundle:Slide:api_all }
+
+
+
+#section 
+app_section_add:
+    path: /section/add.html
+    defaults: { _controller: AppBundle:Section:add}
+app_section_add_wallpaper:
+    path: /section/add_wallpaper.html
+    defaults: { _controller: AppBundle:Section:add_wallpaper}
+
+
+app_section_index:
+    path: /section/index.html
+    defaults: { _controller: AppBundle:Section:index}
+app_section_wallpaper_index:
+    path: /section/index_wallpaper.html
+    defaults: { _controller: AppBundle:Section:index_wallpaper}
+
+
+app_section_edit:
+    path: /section/edit/{id}.html
+    defaults: { _controller: AppBundle:Section:edit}
+    requirements:
+        id:  \d+
+app_section_edit_wallpaper:
+    path: /section/edit_wallpaper/{id}.html
+    defaults: { _controller: AppBundle:Section:edit_wallpaper}
+    requirements:
+        id:  \d+
+
+
+app_section_delete:
+    path: /section/delete/{id}.html
+    defaults: { _controller: AppBundle:Section:delete}
+    requirements:
+        id:  \d+
+app_section_delete_wallpaper:
+    path: /section/delete_wallpaper/{id}.html
+    defaults: { _controller: AppBundle:Section:delete_wallpaper}
+    requirements:
+        id:  \d+
+
+
+app_section_up:
+    path: /section/up/{id}.html
+    defaults: { _controller: AppBundle:Section:up}
+    requirements:
+        id:  \d+
+app_section_up_wallpaper:
+    path: /section/up_wallpaper/{id}.html
+    defaults: { _controller: AppBundle:Section:up_wallpaper}
+    requirements:
+        id:  \d+
+
+
+
+app_section_down:
+    path: /section/down/{id}.html
+    defaults: { _controller: AppBundle:Section:down}
+    requirements:
+        id:  \d+
+app_section_down_wallpaper:
+    path: /section/down_wallpaper/{id}.html
+    defaults: { _controller: AppBundle:Section:down_wallpaper}
+    requirements:
+        id:  \d+
+
+
+
+app_section_view:
+    path: /section/view/{id}.html
+    defaults: { _controller: AppBundle:Section:view}
+    requirements:
+        id:  \d+
+app_section_view_wallpaper:
+    path: /section/view_wallpaper/{id}.html
+    defaults: { _controller: AppBundle:Section:view_wallpaper}
+    requirements:
+        id:  \d+
+
+
+api_section_list:
+    path:     /api/section/list/{token}/{purchase}/
+    defaults: { _controller: AppBundle:Section:api_list }
+api_section_list_wallpaper:
+    path:     /api/section/list/wallpaper/{token}/{purchase}/
+    defaults: { _controller: AppBundle:Section:api_list_wallpaper }
+
+
+    
+#category 
+app_category_add:
+    path: /category/add.html
+    defaults: { _controller: AppBundle:Category:add}
+app_category_edit:
+    path: /category/edit/{id}.html
+    defaults: { _controller: AppBundle:Category:edit}
+    requirements:
+        id:  \d+
+app_category_delete:
+    path: /category/delete/{id}.html
+    defaults: { _controller: AppBundle:Category:delete}
+    requirements:
+        id:  \d+
+app_category_up:
+    path: /category/up/{id}.html
+    defaults: { _controller: AppBundle:Category:up}
+    requirements:
+        id:  \d+
+app_category_down:
+    path: /category/down/{id}.html
+    defaults: { _controller: AppBundle:Category:down}
+    requirements:
+        id:  \d+
+api_category_by:
+    path:     /api/category/by/{id}/{token}/{purchase}/
+    defaults: { _controller: AppBundle:Category:api_by }
+    requirements:
+        id:  \d+  
+api_wallpaper_category_by:
+    path:     /api/wallpaper/category/by/{id}/{token}/{purchase}/
+    defaults: { _controller: AppBundle:Category:api_wallpaper_by }
+    requirements:
+        id:  \d+  
+
+api_category_by_section:
+    path:     /api/category/list/{id}/{token}/{purchase}/
+    defaults: { _controller: AppBundle:Category:api_by_section }
+    requirements:
+        id:  \d+  
+api_category_all:
+    path: /api/category/all/{token}/{purchase}/
+    defaults: { _controller: AppBundle:Category:api_all}
+
+api_wallpaper_category_all:
+    path: /api/category/all/wallpaper/{token}/{purchase}/
+    defaults: { _controller: AppBundle:Category:api_wallpaper_all}
+
+api_tags_all:
+    path: /api/tags/all/{token}/{purchase}/
+    defaults: { _controller: AppBundle:Category:api_tags}
+#version
+app_version_add:
+    path: /version/add.html
+    defaults: { _controller: AppBundle:Version:add}
+app_version_index:
+    path: /version/index.html
+    defaults: { _controller: AppBundle:Version:index}
+app_version_edit:
+    path: /version/edit/{id}.html
+    defaults: { _controller: AppBundle:Version:edit}
+    requirements:
+        id:  \d+
+app_version_delete:
+    path: /version/delete/{id}.html
+    defaults: { _controller: AppBundle:Version:delete}
+    requirements:
+        id:  \d+
+api_version_check:
+    path: /api/version/check/{code}/{token}/{purchase}/
+    defaults: { _controller: AppBundle:Version:api_check_v2}
+    requirements:
+        code:  \d+
+
+#ringtone
+app_ringtone_share:
+    path: /share/{id}.html
+    defaults: { _controller: AppBundle:Ringtone:share}
+    requirements:
+        id:  \d+
+app_ringtone_multi:
+    path: /ringtone/multi.html
+    defaults: { _controller: AppBundle:Ringtone:multi}
+app_ringtone_add:
+    path: /ringtone/add.html
+    defaults: { _controller: AppBundle:Ringtone:add}
+app_ringtone_reviews:
+    path: /ringtone/reviews.html
+    defaults: { _controller: AppBundle:Ringtone:reviews}
+app_ringtone_index:
+    path: /ringtone/index.html
+    defaults: { _controller: AppBundle:Ringtone:index}
+app_ringtone_edit:
+    path: /ringtone/edit/{id}.html
+    defaults: { _controller: AppBundle:Ringtone:edit}
+    requirements:
+        id:  \d+ 
+app_ringtone_review:
+    path: /ringtone/review/{id}.html
+    defaults: { _controller: AppBundle:Ringtone:review}
+    
+app_ringtone_view:
+    path: /ringtone/view/{id}.html
+    defaults: { _controller: AppBundle:Ringtone:view}
+    requirements:
+        id:  \d+
+app_ringtone_delete:
+    path: /ringtone/delete/{id}.html
+    defaults: { _controller: AppBundle:Ringtone:delete}
+    requirements:
+        id:  \d+
+api_ringtone_all:
+    path:     /api/ringtone/all/{order}/{page}/{token}/{purchase}/
+    defaults: { _controller: AppBundle:Ringtone:api_all }
+    requirements:
+        page: \d+
+api_ringtone_by_category:
+    path:     /api/ringtone/category/{page}/{category}/{token}/{purchase}/
+    defaults: { _controller: AppBundle:Ringtone:api_by_category }
+    requirements:
+        page: \d+
+        category: \d+
+api_ringtone_by_user:
+    path:     /api/ringtone/user/{page}/{user}/{token}/{purchase}/
+    defaults: { _controller: AppBundle:Ringtone:api_by_user }
+    requirements:
+        page: \d+
+        user: \d+
+api_ringtone_get:
+    path:     /api/ringtone/get/{id}/{token}/{purchase}/
+    defaults: { _controller: AppBundle:Ringtone:api_get }
+    requirements:
+        id: \d+
+api_ringtone_by_me:
+    path:     /api/ringtone/me/{page}/{user}/{token}/{purchase}/
+    defaults: { _controller: AppBundle:Ringtone:api_by_me }
+    requirements:
+        page: \d+
+        user: \d+
+api_ringtone_related:
+    path:     /api/ringtone/related/{id}/{token}/{purchase}/
+    defaults: { _controller: AppBundle:Ringtone:api_related }
+    requirements:
+        id: \d+
+api_ringtone_by_query:
+    path:     /api/ringtone/query/{page}/{query}/{token}/{purchase}/
+    defaults: { _controller: AppBundle:Ringtone:api_by_query }
+    requirements:
+        page: \d+
+api_rate_add:
+    path:     /api/rate/add/{user}/{ringtone}/{value}/{token}/{purchase}/
+    defaults: { _controller: AppBundle:Ringtone:api_add_rate }
+api_rate_get:
+    path:     /api/rate/get/{user}/{ringtone}/{token}/{purchase}/
+    defaults: { _controller: AppBundle:Ringtone:api_get_rate }
+api_ringtone_upload:
+    path:     /api/ringtone/upload/{token}/{purchase}/
+    defaults: { _controller: AppBundle:Ringtone:api_upload }
+api_ringtone_add_download:
+    path:     /api/ringtone/add/download/{token}/{purchase}/
+    defaults: { _controller: AppBundle:Ringtone:api_add_download }
+    methods: POST
+
+
+#wallpaper
+app_wallpaper_share:
+    path: /share/{id}.html
+    defaults: { _controller: AppBundle:Wallpaper:share}
+    requirements:
+        id:  \d+
+app_wallpaper_multi:
+    path: /wallpaper/multi.html
+    defaults: { _controller: AppBundle:Wallpaper:multi}
+app_wallpaper_add:
+    path: /wallpaper/add.html
+    defaults: { _controller: AppBundle:Wallpaper:add}
+app_wallpaper_reviews:
+    path: /wallpaper/reviews.html
+    defaults: { _controller: AppBundle:Wallpaper:reviews}
+app_wallpaper_index:
+    path: /wallpaper/index.html
+    defaults: { _controller: AppBundle:Wallpaper:index}
+app_wallpaper_edit:
+    path: /wallpaper/edit/{id}.html
+    defaults: { _controller: AppBundle:Wallpaper:edit}
+    requirements:
+        id:  \d+ 
+app_wallpaper_review:
+    path: /wallpaper/review/{id}.html
+    defaults: { _controller: AppBundle:Wallpaper:review}
+    
+app_wallpaper_view:
+    path: /wallpaper/view/{id}.html
+    defaults: { _controller: AppBundle:Wallpaper:view}
+    requirements:
+        id:  \d+
+app_wallpaper_delete:
+    path: /wallpaper/delete/{id}.html
+    defaults: { _controller: AppBundle:Wallpaper:delete}
+    requirements:
+        id:  \d+
+api_wallpaper_all:
+    path:     /api/wallpaper/all/{order}/{page}/{token}/{purchase}/
+    defaults: { _controller: AppBundle:Wallpaper:api_all }
+    requirements:
+        page: \d+
+api_wallpaper_by_category:
+    path:     /api/wallpaper/category/{page}/{category}/{token}/{purchase}/
+    defaults: { _controller: AppBundle:Wallpaper:api_by_category }
+    requirements:
+        page: \d+
+        category: \d+
+api_wallpaper_by_user:
+    path:     /api/wallpaper/user/{page}/{user}/{token}/{purchase}/
+    defaults: { _controller: AppBundle:Wallpaper:api_by_user }
+    requirements:
+        page: \d+
+        user: \d+
+api_wallpaper_get:
+    path:     /api/wallpaper/get/{id}/{token}/{purchase}/
+    defaults: { _controller: AppBundle:Wallpaper:api_get }
+    requirements:
+        id: \d+
+api_wallpaper_by_me:
+    path:     /api/wallpaper/me/{page}/{user}/{token}/{purchase}/
+    defaults: { _controller: AppBundle:Wallpaper:api_by_me }
+    requirements:
+        page: \d+
+        user: \d+
+api_wallpaper_related:
+    path:     /api/wallpaper/related/{id}/{token}/{purchase}/
+    defaults: { _controller: AppBundle:Wallpaper:api_related }
+    requirements:
+        id: \d+
+api_wallpaper_by_query:
+    path:     /api/wallpaper/query/{page}/{query}/{token}/{purchase}/
+    defaults: { _controller: AppBundle:Wallpaper:api_by_query }
+    requirements:
+        page: \d+
+api_wallpaper_rate_add:
+    path:     /api/rate/add/wallpaper/{user}/{wallpaper}/{value}/{token}/{purchase}/
+    defaults: { _controller: AppBundle:Wallpaper:api_add_rate }
+api_wallpaper_rate_get:
+    path:     /api/rate/get/wallpaper/{user}/{wallpaper}/{token}/{purchase}/
+    defaults: { _controller: AppBundle:Wallpaper:api_get_rate }
+api_wallpaper_upload:
+    path:     /api/wallpaper/upload/{token}/{purchase}/
+    defaults: { _controller: AppBundle:Wallpaper:api_upload }
+api_wallpaper_add_download:
+    path:     /api/wallpaper/add/download/{token}/{purchase}/
+    defaults: { _controller: AppBundle:Wallpaper:api_add_download }
+    methods: POST
