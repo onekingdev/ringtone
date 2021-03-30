@@ -3,8 +3,8 @@ parameters:
     database_host: localhost
     database_port: 3306
     database_name: todayshi_ringtone
-    database_user: root
-    database_password: null
+    database_user: todayshi_rington
+    database_password: mJgaE0qWHLW5
     mailer_transport: smtp
     mailer_host: 127.0.0.1
     mailer_user: null

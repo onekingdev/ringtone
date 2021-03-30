@@ -26,8 +26,7 @@
         "egeloen/ckeditor-bundle": "4.0",
         "itsjavi/bootstrap-colorpicker": "^2.5",
         "twig/extensions": "^1.4",
-        "knplabs/knp-time-bundle": "^1.7",
-        "liip/imagine-bundle": "1.6.0"
+        "knplabs/knp-time-bundle": "^1.7"
     },
     "require-dev": {
         "sensio/generator-bundle": "~3.0",

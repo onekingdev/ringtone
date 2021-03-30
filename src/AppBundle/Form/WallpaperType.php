@@ -6,7 +6,6 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
 class WallpaperType extends AbstractType
 {
     private $em;
@@ -21,21 +20,22 @@ class WallpaperType extends AbstractType
         $builder->add('description',null,array("label"=>"Description"));
         $builder->add('enabled',null,array("label"=>"Enabled"));
         $builder->add("categories",'entity',
-                        array(
-                                'class' => 'AppBundle:Category',
-                                'expanded' => true,
-                                "choices" => $this->filterEntities(),
-                                "multiple" => "true",
-                                'by_reference' => false,
-                            )
+                    array(
+                          'class' => 'AppBundle:Category',
+                          'expanded' => true,
+                          "choices" => $this->filterEntities(),
+                          "multiple" => "true",
+                          'by_reference' => false,
+                        )
                     );
+        
         $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
             $article = $event->getData();
             $form = $event->getForm();
             if ($article and null !== $article->getId()) {
-                $form->add("file", null, array("label"=>"","required"=>false));
+                 $form->add("file",null,array("label"=>"","required"=>false));
             }else{
-                $form->add("file", null, array("label"=>"","required"=>true));
+                 $form->add("file",null,array("label"=>"","required"=>true));
             }
         });
         $builder->add('save', 'submit',array("label"=>"save"));

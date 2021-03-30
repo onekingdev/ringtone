@@ -8,7 +8,7 @@ use AppBundle\Entity\Rate;
 use AppBundle\Entity\MP3File;
 use AppBundle\Form\RingtoneMultiType;
 use AppBundle\Form\RingtoneType;
-use AppBundle\Form\RingtoneAddType;
+use AppBundle\Form\RingtoneEditType;
 use AppBundle\Form\RingtoneReviewType;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -27,6 +27,8 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 class RingtoneController extends Controller
 {
+
+
   	public function format_size($size) {
   	  if ($size < 1000) {
   	    return $size . ' B';
@@ -50,61 +52,52 @@ class RingtoneController extends Controller
     {
         $ringtone= new Ringtone();
         $em=$this->getDoctrine()->getManager();
-        $form = $this->createForm(new RingtoneAddType($em),$ringtone);
+        $form = $this->createForm(new RingtoneType($em),$ringtone);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            if( $ringtone->getFiles()!=null ){
-                $files = $ringtone->getFiles();
-                foreach($files as $file)
-                {
-                    $media= new Media();
-                    $media->setFile($file);
-                    $media->upload($this->container->getParameter('files_directory'));
-                    $em->persist($media);
-                    $em->flush();
-                    $new_ringtone = new Ringtone();
-                    $new_ringtone->setFile($file);
-                    $new_ringtone->setFiles($files);
-                    $new_ringtone->setTitle($file->getClientOriginalName());
-                    $new_ringtone->setTags($ringtone->getTags());
-                    $new_ringtone->setEnabled($ringtone->getEnabled());
-                    $new_ringtone->setCategories($ringtone->getCategories());
-                    $new_ringtone->setDescription($ringtone->getDescription());
-                    $size = $this->format_size($file->getClientSize());
-                    $new_ringtone->setUser($this->getUser());
-                    $new_ringtone->setMedia($media);
-                    // $new_ringtone->setUserName($this->getUser()->getName());
-                    $new_ringtone->setDownloads(0);
-                    $new_ringtone->setSize($size);
-                    if ($media->getExtension()=="mp3") {
-                        @$mp3file = new MP3File($this->container->getParameter('files_directory').$media->getUrl());
-                        @$new_ringtone->setDuration($mp3file->getDuration());
-                    }else{
-                        @$new_ringtone->setDuration($this->wavDur($this->container->getParameter('files_directory').$media->getUrl()));
-                    }
-                    $tags_list = explode(",", $new_ringtone->getTags());
-                    foreach ($tags_list as $key => $value) {
-                    $tag = $em->getRepository("AppBundle:Tag")->findOneBy(array("name"=>strtolower($value)));
-                    if ($tag ==null) {
-                        $tag = new Tag();
-                        $tag->setName(strtolower($value));
-                        $em->persist($tag);
-                        $em->flush();
-                        $new_ringtone->addTagslist($tag);
-                    }else{
-                        $new_ringtone->addTagslist($tag);
-                    }
-                    }
-                    $em->persist($new_ringtone);
-                    $em->flush();
+        	 if( $ringtone->getFile()!=null ){
+                $file = $ringtone->getFile();
+                $media= new Media();
+                $media->setFile($file);
+                $media->upload($this->container->getParameter('files_directory'));
+                $em->persist($media);
+                $em->flush();
+                $size = $this->format_size($file->getClientSize());
+                $ringtone->setUser($this->getUser());
+          			$ringtone->setDownloads(0);
+                $ringtone->setSize($size);
+        				$ringtone->setMedia($media);
+                if ($media->getExtension()=="mp3") {
+                  @$mp3file = new MP3File($this->container->getParameter('files_directory').$media->getUrl());
+                  @$ringtone->setDuration($mp3file->getDuration());
+                }else{
+                   @$ringtone->setDuration($this->wavDur($this->container->getParameter('files_directory').$media->getUrl()));
                 }
+                $tags_list = explode(",", $ringtone->getTags());
+                foreach ($tags_list as $key => $value) {
+                  $tag =  $em->getRepository("AppBundle:Tag")->findOneBy(array("name"=>strtolower($value)));
+                  if ($tag ==null) {
+                    $tag = new Tag();
+                    $tag->setName(strtolower($value));
+                    $em->persist($tag);
+                    $em->flush();
+                    $ringtone->addTagslist($tag);
+                  }else{
+                    $ringtone->addTagslist($tag);
+                  }
+                }
+
+
+  	            $em->persist($ringtone);
+  	            $em->flush();
+                      
                 $this->addFlash('success', 'Operation has been done successfully');
                 return $this->redirect($this->generateUrl('app_ringtone_index'));
             }else{
                 $error = new FormError("Required image file");
                 $form->get('file')->addError($error);
             }
-        }
+ 		     }
         return $this->render("AppBundle:Ringtone:add.html.twig",array("form"=>$form->createView()));
     }
     public function indexAction(Request $request)

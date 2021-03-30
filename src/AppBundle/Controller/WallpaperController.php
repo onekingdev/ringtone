@@ -8,7 +8,6 @@ use AppBundle\Entity\Rate;
 use AppBundle\Entity\MP3File;
 use AppBundle\Form\WallpaperMultiType;
 use AppBundle\Form\WallpaperType;
-use AppBundle\Form\WallpaperAddType;
 use AppBundle\Form\WallpaperEditType;
 use AppBundle\Form\WallpaperReviewType;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -26,18 +25,6 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
-
-use Symfony\Component\VarDumper\Cloner\VarCloner;
-use Symfony\Component\VarDumper\Dumper\CliDumper;
-use Symfony\Component\VarDumper\VarDumper;
-
-CliDumper::$defaultOutput = 'php://output';
-VarDumper::setHandler(function ($var) {
-    $cloner = new VarCloner();
-    $dumper = new CliDumper();
-    $dumper->dump($cloner->cloneVar($var));
-});
-
 class WallpaperController extends Controller
 {
 
@@ -65,40 +52,29 @@ class WallpaperController extends Controller
     {
         $wallpaper= new Wallpaper();
         $em=$this->getDoctrine()->getManager();
-        $form = $this->createForm(new WallpaperAddType($em),$wallpaper);
+        $form = $this->createForm(new WallpaperType($em),$wallpaper);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-        	if( $wallpaper->getFiles()!=null ){
-                $files = $wallpaper->getFiles();
-                foreach($files as $file)
-                {
-                    $media= new Media();
-                    $new_wallpaper = new Wallpaper();
-                    $media->setFile($file);
-                    $new_wallpaper->setFile($file);
-                    $new_wallpaper->setFiles($files);
-                    // $new_wallpaper->setTitle($wallpaper->getTitle());
-                    $new_wallpaper->setTitle($file->getClientOriginalName());
-                    $new_wallpaper->setTags($wallpaper->getTags());
-                    $new_wallpaper->setEnabled($wallpaper->getEnabled());
-                    $new_wallpaper->setCategories($wallpaper->getCategories());
-                    $new_wallpaper->setDescription($wallpaper->getDescription());
-                    $new_wallpaper->setFileTypesInTB($this->container->getParameter('files_directory'));
-                    $media->upload($this->container->getParameter('files_directory'));
-                    $new_wallpaper->setWallpaper($media->getUrl());
-                    $new_wallpaper->setMedia($media);
-                    $em->persist($media);
-                    $em->flush();
-                    $size = $this->format_size($file->getClientSize());
-                    $new_wallpaper->setUser($this->getUser());
-                    $new_wallpaper->setUserID($this->getUser()->getId());
-                    $new_wallpaper->setUserName($this->getUser()->getName());
-                    $new_wallpaper->setDownloads(0);
-                    $new_wallpaper->setSize($size);
-                    $new_wallpaper->setUserImage($this->getUser()->getImage());
-                    $em->persist($new_wallpaper);
-                    $em->flush();
-                }
+        	 if( $wallpaper->getFile()!=null ){
+                $file = $wallpaper->getFile();
+                $media= new Media();
+                $media->setFile($file);
+                $wallpaper->setFileTypesInTB($this->container->getParameter('files_directory'));
+                $media->upload($this->container->getParameter('files_directory'));
+                $wallpaper->setWallpaper($media->getUrl());
+                $wallpaper->setMedia($media);
+                $em->persist($media);
+                $em->flush();
+                $size = $this->format_size($file->getClientSize());
+                $wallpaper->setUser($this->getUser());
+                $wallpaper->setUserID($this->getUser()->getId());
+                $wallpaper->setUserName($this->getUser()->getName());
+          	$wallpaper->setDownloads(0);
+                $wallpaper->setSize($size);
+                $wallpaper->setUserImage($this->getUser()->getImage());
+  	            $em->persist($wallpaper);
+  	            $em->flush();
+                      
                 $this->addFlash('success', 'Operation has been done successfully');
                 return $this->redirect($this->generateUrl('app_wallpaper_index'));
             }else{
