@@ -58,9 +58,11 @@
                               <div>
                                   <a href="#" class="btn btn-rose btn-round btn-select" style="width: 100%;"><i class="material-icons">wallpaper</i> Select wallpaper</a>
                               </div>
-                              {{form_widget(form.file,{"attr":{"class":"file-hidden input-file","style":"   /* display: none; */height: 0px;width: 0px;position: absolute;"}})}}
+                              {{form_widget(form.files,{"attr":{"id":"gallery-photo-add", "multiple":"true","class":"file-hidden input-file","style":"   /* display: none; */height: 0px;width: 0px;position: absolute;"}})}}
                           </div>
-                          <span class="validate-input">{{form_errors(form.file)}}</span>
+                          <div class="col-md-12" class="gallery">
+                          </div>
+                          <span class="validate-input">{{form_errors(form.files)}}</span>
                           <br>
                           <span class="pull-right"><a href="{{path("app_wallpaper_index")}}" class="btn btn-fill btn-yellow"><i class="material-icons">arrow_back</i> Cancel</a>{{form_widget(form.save,{attr:{"class":"btn btn-fill btn-rose"}})}}</span>
                     {{form_end(form)}}

@@ -7,7 +7,7 @@ use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
-class WallpaperType extends AbstractType
+class WallpaperAddType extends AbstractType
 {
     private $em;
 
@@ -33,9 +33,23 @@ class WallpaperType extends AbstractType
             $article = $event->getData();
             $form = $event->getForm();
             if ($article and null !== $article->getId()) {
-                $form->add("file", null, array("label"=>"","required"=>false));
+                $form->add('files', FileType::class, [
+                    "label"=>"",
+                    "required"=>false,
+                    'multiple' => true,
+                    'attr'     => [
+                        'multiple' => 'multiple'
+                    ]
+                ]);
             }else{
-                $form->add("file", null, array("label"=>"","required"=>true));
+                $form->add('files', FileType::class, [
+                    "label"=>"",
+                    "required"=>true,
+                    'multiple' => true,
+                    'attr'     => [
+                        'multiple' => 'multiple'
+                    ]
+                ]);
             }
         });
         $builder->add('save', 'submit',array("label"=>"save"));
